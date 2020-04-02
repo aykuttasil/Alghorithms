@@ -6,18 +6,30 @@ namespace happy_number
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine(""+sumOfSquareOfDigits(12));
+            int result = 6;
+
+            while (result != 1 && result != 4)
+            {
+                result = sumOfSquareOfDigits(result);
+                Console.WriteLine("Result:" + result);
+            }
+
+            if (result == 1)
+                Console.WriteLine("Happy number");
+            else if (result == 4)
+                Console.WriteLine("Not Happy number");
         }
 
-        public static int sumOfSquareOfDigits(int a)
+        public static int sumOfSquareOfDigits(int num)
         {
-            var strInt = a.ToString();    
-            var sum = 0;
-            for (int i = 0; i < strInt.Length; i++)
+            int rem = 0, sum = 0;
+
+            //Calculates the sum of squares of digits  
+            while (num > 0)
             {
-                var digit = int.Parse(strInt[i].ToString());
-                sum += digit * digit;            
+                rem = num % 10;
+                sum = sum + (rem * rem);
+                num = num / 10;
             }
             return sum;
         }
